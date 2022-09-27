@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="ISO-8859-1">
+<title>LMS</title>
+<link rel="stylesheet" 
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+	crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-primary">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Library Management Systems </a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/books}">Book List</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+	
+	<div class="container">
+	
+		<div class="row w-20 p-3">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card p-3 mb-2 bg-info text-white">
+				<h1 class="text-center">Current Book List</h1>
+			</div>
+		</div>
+		
+		<div class="d-flex">
+			<div class="p-2">
+				<a th:href="@{/books/new}" class="btn btn-primary btn=sm">Add Book</a>
+			</div>
+		</div>
+	
+	
+		<table class="table table-striped table-bordered">
+			<thead class ="table-dark">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Auther</th>
+					<th>Genere</th>
+					<th>Possessor</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="book:${books}">
+					<td th:text="${book.id}"></td>
+					<td th:text="${book.name}"></td>
+					<td th:text="${book.author}"></td>
+					<td th:text="${book.genere}"></td>
+					<td th:text="${book.posses}"></td>
+					<td class="d-flex">
+						<a th:href="@{/books/edit/{id}(id=${book.id})}" class="btn btn-primary">Update</a>
+						<a th:href="@{/books/remove/{id}(id=${book.id})}" class="btn btn-primary ml-auto p-2">Remove</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+</body>
+</html>
